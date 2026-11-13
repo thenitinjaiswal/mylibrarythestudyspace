@@ -1,0 +1,4 @@
+import { createFileRoute } from '@tanstack/react-router';
+import { Home } from '@/components/library/public';
+import { libraryQuery, pageHead } from '@/lib/library-query';
+export const Route = createFileRoute('/')({ loader: ({ context }) => context.queryClient.ensureQueryData(libraryQuery), head: ({ loaderData }) => ({ ...pageHead('Study Library in Gomti Nagar, Lucknow', 'Find your focus at My Library – The Study Space in Vastu Khand, Gomti Nagar, Lucknow. Explore memberships and enquire about joining.'), scripts: [{ type: 'application/ld+json', children: JSON.stringify({ '@context': 'https://schema.org', '@type': 'Library', name: 'My Library – The Study Space', telephone: loaderData?.settings.phone, email: loaderData?.settings.email, address: { '@type': 'PostalAddress', streetAddress: loaderData?.settings.address, addressLocality: 'Lucknow', addressRegion: 'Uttar Pradesh', addressCountry: 'IN' } }) }] }), component: Home });
